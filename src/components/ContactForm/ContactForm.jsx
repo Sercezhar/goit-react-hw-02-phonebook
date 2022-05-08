@@ -1,12 +1,8 @@
 import styles from './ContactForm.module.css';
 import { Component } from 'react';
-import { customAlphabet } from 'nanoid';
-
-const nanoid = customAlphabet('1234567890', 8);
 
 export class ContactForm extends Component {
   state = {
-    id: '',
     name: '',
     number: '',
   };
@@ -22,7 +18,6 @@ export class ContactForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.state.id = nanoid();
     this.props.onSubmit(this.state);
     this.resetState();
   };

@@ -3,6 +3,9 @@ import { ContactForm } from './ContactForm';
 import { ContactList } from './ContactList';
 import { Notification } from './Notification';
 import { Filter } from './Filter';
+import { customAlphabet } from 'nanoid';
+
+const nanoid = customAlphabet('1234567890', 8);
 
 export class App extends Component {
   state = {
@@ -10,7 +13,13 @@ export class App extends Component {
     filter: '',
   };
 
-  handleFormSubmit = data => {
+  handleFormSubmit = ({ name, number }) => {
+    const data = {
+      id: nanoid(),
+      name,
+      number,
+    };
+
     if (
       this.state.contacts.some(
         contact => contact.name.toLowerCase() === data.name.toLowerCase()
