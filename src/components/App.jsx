@@ -11,7 +11,11 @@ export class App extends Component {
   };
 
   handleFormSubmit = data => {
-    if (this.state.contacts.map(contact => contact.name).includes(data.name)) {
+    if (
+      this.state.contacts.some(
+        contact => contact.name.toLowerCase() === data.name.toLowerCase()
+      )
+    ) {
       alert(data.name + ' is already in contacts.');
     } else {
       this.setState(prevState => ({ contacts: [...prevState.contacts, data] }));
